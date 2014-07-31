@@ -42,10 +42,12 @@ $(document).ready(function() {
       $(this) .addClass(pentago.turn)
       $(document).off('click', '#pentago .space')
       $(document).on('click', '#pentago .space', function() {
-        pentago.place_piece(pentago.turn, space, { sq: this.id[0], dir: 'cw' });
+        if (parseInt(this.id[1], 10) % 3 == 1 || parseInt(this.id[1], 10) % 3 == 0) {
+        pentago.place_piece(pentago.turn, space, { sq: this.id[0], dir: (parseInt(this.id[1], 10) % 3 == 1 ? 'ccw' : 'cw'  });
         refresh();
         $(document).off('click', '#pentago .space')
         $(document).on('click', '#pentago .space', click_helper)
+        }
       })
     }
   }
